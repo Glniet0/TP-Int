@@ -1,0 +1,21 @@
+<h2>Panel de Administración</h2>
+<table class="table table-striped mt-3">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Marca</th>
+      <th>Precio</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each maquinaria}}
+      <tr>
+        <td>{{id}}</td>
+        <td>{{nombre}}</td>
+        <td>{{marca}}</td>
+        <td>${{precio}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
