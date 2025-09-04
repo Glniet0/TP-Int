@@ -48,3 +48,113 @@ button:hover {
   max-width: 100%;
   border-radius: 10px;
 }
+
+.page {
+  padding: 20px;
+  text-align: center;
+}
+
+.form {
+  margin-bottom: 20px;
+}
+
+.form input {
+  padding: 8px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form button {
+  background-color: #006400; 
+  color: yellow;
+  border: none;
+  padding: 8px 15px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background-color: #228B22;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.tabla th {
+  background: #006400;
+  color: yellow;
+  padding: 10px;
+}
+
+.tabla td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.btn-edit {
+  background-color: #ffc107;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-edit:hover {
+  background-color: #e0a800;
+}
+
+.btn-delete {
+  background-color: #dc3545; 
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+.form-contacto {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.form-contacto input,
+.form-contacto textarea {
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.form-contacto textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-contacto button {
+  background-color: #006400; /* verde John Deere */
+  color: yellow;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-contacto button:hover {
+  background-color: #228B22;
+}

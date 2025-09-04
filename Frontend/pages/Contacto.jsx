@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 
 function Contacto() {
@@ -13,16 +14,40 @@ function Contacto() {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(form).toString()
-    }).then(() => alert("Mensaje enviado ✅"));
+    })
+      .then(() => {
+        alert("Mensaje enviado ✅");
+        setForm({ nombre: "", email: "", mensaje: "" }); // limpia el form
+      })
+      .catch(() => alert("Error al enviar ❌"));
   };
 
   return (
-    <div>
+    <div className="page">
       <h2>Contacto</h2>
-      <form onSubmit={handleSubmit}>
-        <input name="nombre" placeholder="Nombre" onChange={handleChange} required />
-        <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
-        <textarea name="mensaje" placeholder="Mensaje" onChange={handleChange} required></textarea>
+      <form className="form-contacto" onSubmit={handleSubmit}>
+        <input
+          name="nombre"
+          placeholder="Nombre"
+          value={form.nombre}
+          onChange={handleChange}
+          required
+        />
+        <input
+          name="email"
+          type="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={handleChange}
+          required
+        />
+        <textarea
+          name="mensaje"
+          placeholder="Mensaje"
+          value={form.mensaje}
+          onChange={handleChange}
+          required
+        ></textarea>
         <button type="submit">Enviar</button>
       </form>
     </div>
