@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function Admin() {
   const [maquinas, setMaquinas] = useState([]);
@@ -12,7 +12,7 @@ function Admin() {
   return (
     <div>
       <h2>Panel de Administración</h2>
-      <table>
+      <table className="tabla"> {/* Agregada la clase para estilos */}
         <thead>
           <tr>
             <th>ID</th>

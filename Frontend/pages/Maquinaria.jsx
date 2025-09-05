@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function Maquinaria() {
   const [maquinas, setMaquinas] = useState([]);
@@ -7,15 +6,20 @@ function Maquinaria() {
   const [editId, setEditId] = useState(null);
 
   // Cargar lista desde el backend
-  const cargarMaquinas = () => {
-    fetch("http://localhost:4000/api/maquinaria")
-      .then(res => res.json())
-      .then(data => setMaquinas(data));
+  const cargarMaquinas = async () => {
+    try {
+      const res = await fetch("http://localhost:4000/api/maquinaria");
+      const data = await res.json();
+      console.log("Maquinas cargadas: ", data); // Verificar los datos que llegan del backend
+      setMaquinas(data);
+    } catch (error) {
+      console.error("Error al cargar las máquinas", error);
+    }
   };
 
   useEffect(() => {
     cargarMaquinas();
-  }, []);
+  }, []); // Esto cargará las máquinas solo al inicio
 
   // Manejar inputs
   const handleChange = e => {
@@ -23,38 +27,52 @@ function Maquinaria() {
   };
 
   // Guardar (agregar o actualizar)
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
-    if (editId) {
-      // UPDATE
-      fetch(`http://localhost:4000/api/maquinaria/${editId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form)
-      }).then(() => {
+    try {
+      let response;
+      if (editId) {
+        // UPDATE
+        response = await fetch(`http://localhost:4000/api/maquinaria/${editId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form)
+        });
+        console.log("Respuesta de actualización: ", response);
+      } else {
+        // CREATE
+        response = await fetch("http://localhost:4000/api/maquinaria", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form)
+        });
+        console.log("Respuesta de creación: ", response);
+      }
+
+      // Verificar si la respuesta fue correcta
+      if (response.ok) {
         setForm({ nombre: "", marca: "", precio: "" });
         setEditId(null);
-        cargarMaquinas();
-      });
-    } else {
-      // CREATE
-      fetch("http://localhost:4000/api/maquinaria", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form)
-      }).then(() => {
-        setForm({ nombre: "", marca: "", precio: "" });
-        cargarMaquinas();
-      });
+        cargarMaquinas(); // Recargar la lista después de agregar o actualizar
+      } else {
+        console.error("Error al agregar o actualizar la maquinaria");
+      }
+    } catch (error) {
+      console.error("Error al guardar la maquinaria", error);
     }
   };
 
   // Eliminar
-  const handleDelete = id => {
-    fetch(`http://localhost:4000/api/maquinaria/${id}`, {
-      method: "DELETE"
-    }).then(() => cargarMaquinas());
+  const handleDelete = async id => {
+    try {
+      await fetch(`http://localhost:4000/api/maquinaria/${id}`, {
+        method: "DELETE"
+      });
+      cargarMaquinas(); // Recargar la lista después de eliminar
+    } catch (error) {
+      console.error("Error al eliminar la maquinaria", error);
+    }
   };
 
   // Editar (carga los datos en el form)

@@ -9,7 +9,7 @@ function Home() {
       <h1>Bienvenido a AgroMáquinas</h1>
       <p>Soluciones agrícolas en maquinaria de primer nivel.</p>
       <img
-        src="https://www.deere.com/assets/images/region-4/products/tractors/7r/7r-row-crop-tractor-large.jpg"
+        src="C:\Users\La Gomez\Desktop\Trabajo practico integrador\Frontend\tractor.jpg"
         alt="tractor"
         className="img"
       />
